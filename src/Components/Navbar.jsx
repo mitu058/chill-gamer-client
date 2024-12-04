@@ -2,31 +2,31 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/favicon.png';
 
 const Navbar = () => {
-  console.log(import.meta.env.VITE_a);
+  
   const links = (
     <>
       <li>
-        <NavLink  className="flex items-center">
+        <Link  className="flex items-center">
           <span>Home</span>
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink  className="flex items-center">
+        <Link  className="flex items-center">
           <span>All Reviews</span>
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink  className="flex items-center">
+        <NavLink to='/addReview' className="flex items-center">
           <span>Add Review</span>
         </NavLink>
       </li>
       <li>
-        <NavLink  className="">
+        <Link  className="">
           <span>My Reviews</span>
-        </NavLink>
+        </Link>
       </li>
       <li>
-        <NavLink>Game Watchlist</NavLink>
+        <Link>Game Watchlist</Link>
       </li>
     </>
   );
@@ -65,7 +65,7 @@ const Navbar = () => {
               alt="Logo"
               className="w-12 h-12 rounded-full object-cover"
             />
-            <a className="text-2xl font-bold md:block lg:block hidden">Discount Pro</a>
+            <a className="text-2xl font-bold md:block lg:block hidden">Chill Gamer</a>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
