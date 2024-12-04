@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import Swal from 'sweetalert2';
 
@@ -67,7 +67,12 @@ const [reviews, setreviews] = useState(allReviews)
                 <td>{review.genre}</td> 
                 <td>{review.rating}</td>
                 <td >
-                  <button className="btn btn-sm mr-4 bg-[#f0a544] text-white"><FaEdit></FaEdit></button>
+                 <Link to={`/updateReview/${review._id}`}>
+                 <button 
+                  className="btn btn-sm mr-4 bg-[#f0a544] text-white">
+                    <FaEdit></FaEdit>
+                    </button>
+                 </Link>
                   <button
                    onClick={()=>deleteReview(review._id)}
                     className="btn btn-sm btn-error text-white"

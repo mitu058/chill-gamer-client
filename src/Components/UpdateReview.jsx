@@ -1,62 +1,60 @@
-import React from "react";
-import Swal from "sweetalert2";
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-const AddReview = () => {
+const UpdateReview = () => {
+    const getreview = useLoaderData()
+    const {title, rating, genre, year, name, email, photo, review, _id} = getreview
+   
+    const handelUpdateReview = e =>{
+        e.preventDefault()
+       const from = e.target
+        const title = from.title.value
+        const rating = parseInt(from.rating.value)
+        const genre = from.genre.value
+        const year = from.year.value
+        const name = from.name.value
+        const email = from.email.value
+        const photo = from.photo.value
+        const review = from.review.value
+    
+        const updateReview = {title, rating, genre, year, name, email, photo, review}
+        console.log(updateReview);
 
-const handelAddReview = e =>{
-    e.preventDefault()
-   const from = e.target
-    const title = from.title.value
-    const rating = parseInt(from.rating.value)
-    const genre = from.genre.value
-    const year = from.year.value
-    const name = from.name.value
-    const email = from.email.value
-    const photo = from.photo.value
-    const review = from.review.value
-
-    const newReview = {title, rating, genre, year, name, email, photo, review}
-    console.log(newReview);
-  
-    fetch('http://localhost:5000/review',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newReview)
-    })
-    .then(res => res.json())
-    .then(data =>{
-        console.log(data);
-        if(data.insertedId){
+        fetch(`http://localhost:5000/review/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateReview)
+        })
+       .then(res => res.json())
+       .then(data =>{
+        console.log(data)
+        if(data.modifiedCount){
             Swal.fire({
-                title: 'success!',
-                text: 'Review added successfully',
+                title: 'Success!',
+                text: 'updated Review successfully',
                 icon: 'success',
-                confirmButtonText: 'Close'
-              })
+                confirmButtonText: 'close'
+              }) 
         }
-  
-    })
-  
-}
-
-
-  return (
-    <div>
+       })
+    }
+    return (
+        <div>
       <div className="flex flex-col justify-center items-center my-10">
         <div className="lg:w-[40%] mx-auto space-y-6 rounded-lg border bg-white p-10 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
           <div className="flex flex-col space-y-1">
             <h3 className="text-3xl text-center font-bold tracking-tight">
-              Add New Review
+              Update Your Review
             </h3>
             <p className="text-xl text-center text-zinc-500 dark:text-zinc-400">
-              Share your gaming experience! Add your favorite game, write a
-              review, and let others know your thoughts.
+            Update your review and share your gaming journey! Edit your details, add a favorite game, write a review, and express your thoughts with the gaming community.
             </p>
           </div>
           <div>
-            <form onSubmit={handelAddReview} className="space-y-6">
+            <form onSubmit={handelUpdateReview} className="space-y-6">
               {/* First Grid: Title and Rating */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
@@ -67,6 +65,7 @@ const handelAddReview = e =>{
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     placeholder="Enter game title"
                     name="title"
+                    defaultValue={title}
                     type="text"
                   />
                 </div>
@@ -78,6 +77,7 @@ const handelAddReview = e =>{
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     placeholder="Rate the game (1-5)"
                     name="rating"
+                    defaultValue={rating}
                     type="number"
                     min="1"
                     max="5"
@@ -93,6 +93,7 @@ const handelAddReview = e =>{
                   <select
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     name="genre"
+                    defaultValue={genre}
                   >
                     <option value="Action">Action</option>
                     <option value="RPG">RPG</option>
@@ -110,6 +111,7 @@ const handelAddReview = e =>{
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     placeholder="Enter publishing year"
                     name="year"
+                    defaultValue={year}
                     type="number"
                   />
                 </div>
@@ -123,6 +125,7 @@ const handelAddReview = e =>{
                   <input
                     className="flex h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
                     name="name"
+                    defaultValue={name}
                     type="text"
                    
                   />
@@ -135,6 +138,7 @@ const handelAddReview = e =>{
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     placeholder="Enter your email"
                     name="email"
+                    defaultValue={email}
                     type="email"
                   />
                 </div>
@@ -148,6 +152,7 @@ const handelAddReview = e =>{
                   className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                   placeholder="Enter game cover image URL"
                   name="photo"
+                  defaultValue={photo}
                   type="url"
                 />
               </div>
@@ -159,19 +164,20 @@ const handelAddReview = e =>{
                   className="flex w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                   placeholder="Write your detailed review"
                   name="review"
+                  defaultValue={review}
                   rows="4"
                 ></textarea>
               </div>
               {/* Submit Button */}
               <button className="rounded-md text-xl bg-[#331A15] px-4 py-2 text-white transition-colors hover:bg-[#E3B577] btn btn-block">
-                Add Review
+                Update Review
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default AddReview;
+export default UpdateReview;
