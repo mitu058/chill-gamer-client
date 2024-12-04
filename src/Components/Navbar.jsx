@@ -21,9 +21,9 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <Link  className="">
+        <NavLink to='/myreview' className="">
           <span>My Reviews</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
         <Link>Game Watchlist</Link>
@@ -32,7 +32,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="mt- sticky top-0 z-50">
+    <div className=" sticky top-0 z-50">
       <div className="text-white navbar bg-gradient-to-r from-red-500 to-orange-400">
         <div className="navbar-start">
           <div className="dropdown">
@@ -69,7 +69,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal space-x-6 font-bold">{links}</ul>
+          <ul className="menu menu-horizontal space-x-2 font-bold">{links}</ul>
         </div>
         <div className="navbar-end space-x-4">
           <Link  className="bg-[#E6533C] text-white btn font-bold">

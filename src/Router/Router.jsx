@@ -5,6 +5,7 @@ import Home from "../Layout/Home";
 import AddReview from "../Components/AddReview";
 import AllReview from "../Components/AllReview";
 import ReviewDetails from "../Components/ReviewDetails";
+import MyReview from "../Components/MyReview";
 
 const router = createBrowserRouter([
 {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
             path:'/review/:id',
             element:<ReviewDetails></ReviewDetails>,
             loader:({params})=> fetch(`http://localhost:5000/review/${params.id}`)
+        },
+        {
+            path:'/myreview',
+            element:<MyReview></MyReview>,
+            loader:()=> fetch('http://localhost:5000/review')
         }
     ]
 }
