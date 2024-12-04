@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const AddReview = () => {
 
@@ -27,6 +28,14 @@ const handelAddReview = e =>{
     .then(res => res.json())
     .then(data =>{
         console.log(data);
+        if(data.insertedId){
+            Swal.fire({
+                title: 'success!',
+                text: 'Review added successfully',
+                icon: 'success',
+                confirmButtonText: 'Close'
+              })
+        }
   
     })
   

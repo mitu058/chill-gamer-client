@@ -11,9 +11,9 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link  className="flex items-center">
+        <NavLink to='/Reviews'  className="flex items-center">
           <span>All Reviews</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
         <NavLink to='/addReview' className="flex items-center">

@@ -3,6 +3,8 @@ import MainLayout from "../Layout/MainLayout";
 import Errorpage from "../Components/Errorpage";
 import Home from "../Layout/Home";
 import AddReview from "../Components/AddReview";
+import AllReview from "../Components/AllReview";
+import ReviewDetails from "../Components/ReviewDetails";
 
 const router = createBrowserRouter([
 {
@@ -12,11 +14,22 @@ const router = createBrowserRouter([
     children:[
         {
             path:'/',
-            element:<Home></Home>
+            element:<Home></Home>,
+            loader:()=> fetch('http://localhost:5000/review')
         },
         {
             path:'/addReview',
             element:<AddReview></AddReview>
+        },
+        {
+            path:'/Reviews',
+            element:<AllReview></AllReview>,
+            loader:()=> fetch('http://localhost:5000/review')
+        },
+        {
+            path:'/review/:id',
+            element:<ReviewDetails></ReviewDetails>,
+            loader:({params})=> fetch(`http://localhost:5000/review/${params.id}`)
         }
     ]
 }
