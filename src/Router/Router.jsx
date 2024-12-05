@@ -9,6 +9,7 @@ import MyReview from "../Components/MyReview";
 import UpdateReview from "../Components/UpdateReview";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import TopReview from "../Components/TopReview";
 
 const router = createBrowserRouter([
 {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
         {
             path:'/register',
             element:<Register></Register>
+        },
+        {
+            path:'/topReview',
+            element:<TopReview></TopReview>,
+            loader:()=> fetch('http://localhost:5000/review')
         }
 
     ]

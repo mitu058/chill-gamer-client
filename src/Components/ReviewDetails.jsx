@@ -1,55 +1,63 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 
-const ReviewDetails = () => { 
+const ReviewDetails = () => {
   const reviewdetails = useLoaderData();
-  const {name,title,genre,email,rating,review,photo} = reviewdetails
-  
-  
+  const { name, title, genre, email, rating, review, photo } = reviewdetails;
+
   return (
-    <div className="flex  flex-col justify-center items-center my-10">
-        
-      <div className="flex max-w-[400px] flex-col items-center justify-center space-y-4 rounded-xl bg-white p-8 shadow-lg dark:bg-[#18181B]">
-        <div className="group relative">
-          <img
-            
-            className="h-[150px] w-full   bg-slate-500 object-cover"
-            src={photo}
-          />
-         
-        </div>
-        <div className="space-y-1 text-center">
-          <h1 className="text-2xl text-gray-700 dark:text-white/90">{name}</h1>
-          <p className="text-sm text-gray-400">{email}</p>
-        </div>
-        <div className="flex w-full justify-between py-2">
-          <div className="space-y-1 text-center">
-            <p className="text-gray-500 dark:text-white/70">Title</p>
-            <p className="font-mono text-xl text-gray-700 dark:text-white/50">
-             {title}
+    <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-900 py-10 px-4">
+      <div className="relative w-full max-w-4xl mb-10">
+        <img
+          src={photo}
+          alt={`${name} Banner`}
+          className="w-full h-[350px] object-cover rounded-t-lg"
+        />
+      </div>
+
+      <div className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg px-6 py-8 space-y-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="text-center">
+            <h2 className="text-sm text-gray-500 dark:text-gray-400">Title</h2>
+            <p className="text-lg font-medium text-gray-800 dark:text-white">
+              {title}
             </p>
           </div>
-          <div className="space-y-1 text-center">
-            <p className="text-gray-500 dark:text-white/70">Genre</p>
-            <p className="font-mono text-xl text-gray-700 dark:text-white/50">
+          <div className="text-center">
+            <h2 className="text-sm text-gray-500 dark:text-gray-400">Genre</h2>
+            <p className="text-lg font-medium text-gray-800 dark:text-white">
               {genre}
             </p>
           </div>
-          <div className="space-y-1 text-center ">
-            <p className="text-gray-500 dark:text-white/70">Rating</p>
-            <p className="font-mono text-xl text-gray-700 dark:text-white/50">
-              {rating}
+          <div className="text-center">
+            <h2 className="text-sm text-gray-500 dark:text-gray-400">Rating</h2>
+            <p className="text-lg font-medium text-gray-800 dark:text-white">
+              {rating} / 10
             </p>
           </div>
         </div>
-        {/* bio  */}
-        <p className="pb-2 text-center text-sm text-gray-500">
-          {review}
-        </p>
-       
-        <button className="w-full rounded-full py-2 text-[12px] font-semibold text-sky-700 ring-1 ring-sky-700 hover:bg-sky-700 hover:text-white sm:text-sm md:text-base">
-         Add to wishlist
-        </button>
+
+        <div className="text-center">
+          <h2 className="text-xl text-gray-500 dark:text-gray-400">{name}</h2>
+          <p className="text-base font-medium text-gray-800 dark:text-white">
+            {email}
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">
+            Review
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {review}
+          </p>
+        </div>
+
+        <div className="flex justify-center">
+          <button className="rounded-full bg-sky-600 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700">
+            Add to Wishlist
+          </button>
+        </div>
       </div>
     </div>
   );

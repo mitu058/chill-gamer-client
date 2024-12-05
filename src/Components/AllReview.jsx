@@ -1,39 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import ReviewDetails from "./ReviewDetails";
 
 const AllReview = () => {
-  const reviewData = useLoaderData();
-  console.log(reviewData);
+  const reviewData = useLoaderData(); // Original data fetched from loader
+  const [sortedReviews, setSortedReviews] = useState(reviewData); // State for sorted/filtered reviews
+  const [selectedGenre, setSelectedGenre] = useState(""); // State for filtering by genre
+
+  // Sorting functionality
+  const handleSort = (criteria) => {
+    const sorted = [...sortedReviews].sort((a, b) => {
+      if (criteria === "rating") {
+        return b.rating - a.rating; // Sort by rating (descending)
+      } else if (criteria === "year") {
+        return b.year - a.year; // Sort by year (descending)
+      }
+      return 0;
+    });
+    setSortedReviews(sorted);
+  };
+
+  // Filter functionality
+  const handleFilter = (genre) => {
+    setSelectedGenre(genre);
+    if (genre === "") {
+      setSortedReviews(reviewData); // Reset to original data if no filter is selected
+    } else {
+      const filtered = reviewData.filter((review) => review.genre === genre);
+      setSortedReviews(filtered);
+    }
+  };
 
   return (
-    
-      <div className="my-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[80%] mx-auto">
-        {reviewData.map((review) => (
-          <div key={review._id} className="card  bg-base-100  shadow-xl">
+    <div className="my-20 w-[80%] mx-auto">
+      {/* Dropdown for sorting */}
+      <div className="flex justify-between mb-8">
+        <div>
+          <label className="mr-2 font-bold">Sort By:</label>
+          <select
+            onChange={(e) => handleSort(e.target.value)}
+            className="select select-bordered"
+          >
+            <option value="">Select</option>
+            <option value="rating">Rating</option>
+            <option value="year">Year</option>
+          </select>
+        </div>
+        {/* Dropdown for filtering */}
+        <div>
+          <label className="mr-2 font-bold">Filter by Genre:</label>
+          <select
+            onChange={(e) => handleFilter(e.target.value)}
+            className="select select-bordered"
+          >
+            <option value="">All Genres</option>
+            {/* Dynamically generate unique genres from data */}
+            {[...new Set(reviewData.map((review) => review.genre))].map(
+              (genre) => (
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
+              )
+            )}
+          </select>
+        </div>
+      </div>
+
+      {/* Display reviews */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {sortedReviews.map((review) => (
+          <div key={review._id} className="card bg-base-100 shadow-xl">
             <figure>
-              <img
-                src={review.photo}
-              />
+              <img src={review.photo} alt={review.name} />
             </figure>
-            <div className="card-body">
+            <div className="p-6">
               <h2 className="card-title">
-               
-                <div className="badge badge-secondary">Rating : {review.rating}</div>
+                {review.name}
+                <div className="badge badge-secondary">
+                  Rating: {review.rating}
+                </div>
               </h2>
-              <p>Title : {review.title}</p>
-              <p>Genre : {review.genre}</p>
+              <p>Title: {review.title}</p>
+              <p>Genre: {review.genre}</p>
+              <p>Year: {review.year}</p>
               <div className="card-actions justify-center">
-            
-               <Link to={`/review/${review._id}`}>
-               <button className="btn btn-sm btn-primary">Explore Details</button> 
-               </Link>
+                <Link to={`/review/${review._id}`}>
+                  <button className="btn btn-sm btn-primary">
+                    Explore Details
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         ))}
       </div>
-    
+    </div>
   );
 };
 

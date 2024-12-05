@@ -2,3 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* index.css or App.css */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dark {
+    background-color: #1a202c; /* Dark background */
+    color: white; /* Dark text */
+  }
+  
+  .light {
+    background-color: white; /* Light background */
+    color: black; /* Light text */
+  }
+  

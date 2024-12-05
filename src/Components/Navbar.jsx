@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/favicon.png';
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   
@@ -81,6 +82,7 @@ const Navbar = () => {
           >
             Register
           </Link>
+          <ThemeToggle></ThemeToggle>
         </div>
       </div>
     </div>

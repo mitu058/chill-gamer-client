@@ -7,7 +7,8 @@ const handelAddReview = e =>{
     e.preventDefault()
    const from = e.target
     const title = from.title.value
-    const rating = parseInt(from.rating.value)
+    // const rating = parseInt(from.rating.value)
+    const rating = from.rating.value
     const genre = from.genre.value
     const year = from.year.value
     const name = from.name.value

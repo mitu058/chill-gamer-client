@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../Firebase/firebase.config";
+
 
 const Login = () => {
+const {signInUser} = useContext(AuthContext)
+const provider = new GoogleAuthProvider();
+
+
+const handelLogin = e =>{
+  e.preventDefault()
+  const from = e.target
+  const email = from.email.value
+  const password = from.password.value
+  console.log('login user', email, password);
+
+  signInUser(email, password)
+  .then((result)=>{
+    console.log('firebase user login', result.user);
+   
+  })
+  .catch((error) => {
+    console.error('error logging in', error);
+    // Handle error message or redirect to login page
+    alert('failed to login')
+  })
+  
+}
+
+const googleLogin = () => {
+  signInWithPopup(auth,provider)
+  .then((result) => {
+    console.log('google user login', result.user);
+  
+  })
+  .catch((error) => {
+    console.error('error logging in with google', error);
+    // Handle error message or redirect to login page
+    alert('failed to login with google')
+  });
+}
+
   return (
     <div className="mx-auto my-14 w-full max-w-md space-y-4 rounded-lg border bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
       <h1 className="text-3xl font-semibold tracking-tight text-center">
         Log In
       </h1>
 
-      <form action="#" className="space-y-6">
+      <form onSubmit={handelLogin} className="space-y-6">
         <div className="space-y-2 text-sm">
           <label
             htmlFor="username"
@@ -65,7 +106,7 @@ const Login = () => {
         <hr className="flex-1 border-gray-400" />
       </div>
       {/* Social icons */}
-      <button className="mx-auto mb-4 mt-8 block rounded-md border px-5 py-2 shadow-lg duration-200 hover:bg-zinc-400/10 dark:border-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-white">
+      <button onClick={googleLogin} className="mx-auto mb-4 mt-8 block rounded-md border px-5 py-2 shadow-lg duration-200 hover:bg-zinc-400/10 dark:border-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 32 32"
