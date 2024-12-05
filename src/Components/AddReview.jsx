@@ -72,7 +72,7 @@ const handelAddReview = e =>{
                 </div>
                 <div className="space-y-2 text-sm">
                   <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
-                    Rating (1-5)
+                    Rating (1-10)
                   </label>
                   <input
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
@@ -80,7 +80,7 @@ const handelAddReview = e =>{
                     name="rating"
                     type="number"
                     min="1"
-                    max="5"
+                    max="10"
                   />
                 </div>
               </div>

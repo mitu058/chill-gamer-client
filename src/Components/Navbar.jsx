@@ -6,9 +6,9 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link  className="flex items-center">
+        <NavLink to='/' className="flex items-center">
           <span>Home</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
         <NavLink to='/Reviews'  className="flex items-center">
@@ -72,11 +72,11 @@ const Navbar = () => {
           <ul className="menu menu-horizontal space-x-2 font-bold">{links}</ul>
         </div>
         <div className="navbar-end space-x-4">
-          <Link  className="bg-[#E6533C] text-white btn font-bold">
+          <Link to='/login' className="bg-[#E6533C] text-white btn font-bold">
             Login
           </Link>
           <Link
-            
+            to='/register'
             className="btn bg-[#E6533C] text-white font-bold"
           >
             Register
