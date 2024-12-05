@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { creatUser } = useContext(AuthContext);
+  const [showPasswoed, setShowPassword] = useState(false);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -16,30 +18,50 @@ const Register = () => {
 
     console.log("register user", name, email, password, photo);
 
+    if (password.length < 6) {
+      Swal.fire({
+        title: "Error!",
+        text: "Password should be at least 6 characters long",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        title: "Error!",
+        text: ' "password should be at least one upperCase, one lowerCase, one number, one special charecter"',
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return;
+    }
+
     creatUser(email, password)
       .then((result) => {
         console.log("firebase user created", result.user);
-        const newUser = {name,email}
-        fetch('http://localhost:5000/users',{
-          method: 'POST',
+        const newUser = { name, email };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(newUser)
+          body: JSON.stringify(newUser),
         })
-        .then(res => res.json())
-        .then(data =>{
-          console.log('user save to database', data);
-          if(data.insertedId){
-            Swal.fire({
-              title: 'success!',
-              text: 'User registered successfully',
-              icon:'success',
-              confirmButtonText: 'Close'
-            })
-          }
-          
-        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("user save to database", data);
+            if (data.insertedId) {
+              Swal.fire({
+                title: "success!",
+                text: "User registered successfully",
+                icon: "success",
+                confirmButtonText: "Close",
+              });
+            }
+          });
       })
       .catch((err) => {
         console.error("error creating user", err);
@@ -86,7 +108,7 @@ const Register = () => {
               type="email"
             />
           </div>
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2 text-sm relative">
             <label
               className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300"
               htmlFor="password_"
@@ -95,11 +117,19 @@ const Register = () => {
             </label>
             <input
               className="flex text-xl h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
+              type={showPasswoed ? "text" : "password"}
               placeholder="password"
               name="password"
-              type="password"
             />
+
+            <div
+              onClick={() => setShowPassword(!showPasswoed)}
+              className="btn btn-xs absolute right-3 top-8"
+            >
+              {showPasswoed ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+            </div>
           </div>
+
           <div className="space-y-2 text-sm">
             <label
               className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300"
