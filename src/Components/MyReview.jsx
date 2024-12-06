@@ -19,7 +19,7 @@ const [reviews, setreviews] = useState(allReviews)
       }).then((result) => {
         if (result.isConfirmed) {
           // delete from the database
-          fetch(`http://localhost:5000/review/${id}`, {
+          fetch(`https://chill-gamer-server-beta.vercel.app/review/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

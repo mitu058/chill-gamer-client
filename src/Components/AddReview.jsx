@@ -19,7 +19,7 @@ const handelAddReview = e =>{
     const newReview = {title, rating, genre, year, name, email, photo, review}
     console.log(newReview);
   
-    fetch('http://localhost:5000/review',{
+    fetch('https://chill-gamer-server-beta.vercel.app/review',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

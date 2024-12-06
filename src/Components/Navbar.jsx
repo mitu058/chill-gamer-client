@@ -1,28 +1,32 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from '../assets/favicon.png';
+import logo from "../assets/favicon.png";
 import ThemeToggle from "./ThemeToggle";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, userLogOut } = useContext(AuthContext);
+  console.log(user);
   
   const links = (
     <>
       <li>
-        <NavLink to='/' className="flex items-center">
+        <NavLink to="/" className="flex items-center">
           <span>Home</span>
         </NavLink>
       </li>
       <li>
-        <NavLink to='/Reviews'  className="flex items-center">
+        <NavLink to="/Reviews" className="flex items-center">
           <span>All Reviews</span>
         </NavLink>
       </li>
       <li>
-        <NavLink to='/addReview' className="flex items-center">
+        <NavLink to="/addReview" className="flex items-center">
           <span>Add Review</span>
         </NavLink>
       </li>
       <li>
-        <NavLink to='/myreview' className="">
+        <NavLink to="/myreview" className="">
           <span>My Reviews</span>
         </NavLink>
       </li>
@@ -66,22 +70,48 @@ const Navbar = () => {
               alt="Logo"
               className="w-12 h-12 rounded-full object-cover"
             />
-            <a className="text-2xl font-bold md:block lg:block hidden">Chill Gamer</a>
+            <a className="text-2xl font-bold md:block lg:block hidden">
+              Chill Gamer
+            </a>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal space-x-2 font-bold">{links}</ul>
         </div>
         <div className="navbar-end space-x-4">
-          <Link to='/login' className="bg-[#E6533C] text-white btn font-bold">
-            Login
-          </Link>
-          <Link
-            to='/register'
-            className="btn bg-[#E6533C] text-white font-bold"
-          >
-            Register
-          </Link>
+
+        {user && user.email ? (
+            <div>
+              <img
+                className="w-10 h-10 rounded-full border-2 border-white+"
+                src={user?.photoURL}
+                alt=""
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          {user && user?.email ? (
+            <button onClick={userLogOut} className="btn btn-warning">
+              LogOut
+            </button>
+          ) : (
+            <Link to="/login" className="bg-[#E6533C] text-white btn font-bold">
+              Login
+            </Link>
+          )}
+
+          {user && user?.email ? (
+            ""
+          ) : (
+            <Link
+              to="/register"
+              className="btn bg-[#E6533C] text-white font-bold"
+            >
+              Register
+            </Link>
+          )}
           <ThemeToggle></ThemeToggle>
         </div>
       </div>

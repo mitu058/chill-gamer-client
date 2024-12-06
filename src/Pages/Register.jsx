@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-  const { creatUser } = useContext(AuthContext);
+  const { creatUser,setUser } = useContext(AuthContext);
   const [showPasswoed, setShowPassword] = useState(false);
 
   const handleRegister = (e) => {
@@ -43,7 +43,7 @@ const Register = () => {
       .then((result) => {
         console.log("firebase user created", result.user);
         const newUser = { name, email };
-        fetch("http://localhost:5000/users", {
+        fetch("https://chill-gamer-server-beta.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +62,15 @@ const Register = () => {
               });
             }
           });
+          const profile = {
+            displayName: name,
+            photoURL: photo,
+          };
+          updateProfile(auth.currentUser, profile);
+        
       })
+      
+      
       .catch((err) => {
         console.error("error creating user", err);
       });
