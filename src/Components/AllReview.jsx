@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllReview = () => {
-  const reviewData = useLoaderData(); // Original data fetched from loader
-  const [sortedReviews, setSortedReviews] = useState(reviewData); // State for sorted/filtered reviews
-  const [selectedGenre, setSelectedGenre] = useState(""); // State for filtering by genre
+  const reviewData = useLoaderData(); 
+  const [sortedReviews, setSortedReviews] = useState(reviewData); 
+  const [selectedGenre, setSelectedGenre] = useState(""); 
 
   // Sorting functionality
   const handleSort = (criteria) => {
     const sorted = [...sortedReviews].sort((a, b) => {
       if (criteria === "rating") {
-        return b.rating - a.rating; // Sort by rating (descending)
+        return b.rating - a.rating; 
       } else if (criteria === "year") {
-        return b.year - a.year; // Sort by year (descending)
+        return b.year - a.year; 
       }
       return 0;
     });
@@ -23,7 +23,7 @@ const AllReview = () => {
   const handleFilter = (genre) => {
     setSelectedGenre(genre);
     if (genre === "") {
-      setSortedReviews(reviewData); // Reset to original data if no filter is selected
+      setSortedReviews(reviewData); 
     } else {
       const filtered = reviewData.filter((review) => review.genre === genre);
       setSortedReviews(filtered);
@@ -32,7 +32,6 @@ const AllReview = () => {
 
   return (
     <div className="my-20 w-[80%] mx-auto">
-      {/* Dropdown for sorting */}
       <div className="flex justify-between mb-8">
         <div>
           <label className="mr-2 font-bold">Sort By:</label>
@@ -45,7 +44,7 @@ const AllReview = () => {
             <option value="year">Year</option>
           </select>
         </div>
-        {/* Dropdown for filtering */}
+      
         <div>
           <label className="mr-2 font-bold">Filter by Genre:</label>
           <select
@@ -53,7 +52,6 @@ const AllReview = () => {
             className="select select-bordered"
           >
             <option value="">All Genres</option>
-            {/* Dynamically generate unique genres from data */}
             {[...new Set(reviewData.map((review) => review.genre))].map(
               (genre) => (
                 <option key={genre} value={genre}>

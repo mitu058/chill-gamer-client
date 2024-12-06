@@ -18,7 +18,7 @@ const TopReview = () => {
         {topRatedGames.map((game) => (
           <div
             key={game._id}
-            className="space-y-4 rounded border p-6 dark:border-zinc-700 dark:bg-zinc-900"
+            className="space-y-4 bg-white  rounded-md border p-6 dark:border-zinc-700 dark:bg-zinc-900"
           >
             <img
               width={350}

@@ -5,6 +5,31 @@ const ReviewDetails = () => {
   const reviewdetails = useLoaderData();
   const { name, title, genre, email, rating, review, photo } = reviewdetails;
 
+
+  const handleAddToWatchlist = (e) => {
+    e.preventDefault();
+
+    // Use loader data directly to create the watchlist item
+    const watchlistItem = { title, genre, rating, name, email, photo, review };
+    console.log("Add to watchlist", watchlistItem);
+
+    fetch("https://chill-gamer-server-beta.vercel.app/watchlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(watchlistItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("review saved to database", data);
+        if (data.insertedId) {
+          alert("Added to Watchlist successfully!");
+        }
+      });
+  };
+
+
+
+
   return (
     <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-900 py-10 px-4">
       <div className="relative w-full max-w-4xl mb-10">
@@ -54,7 +79,7 @@ const ReviewDetails = () => {
         </div>
 
         <div className="flex justify-center">
-          <button className="rounded-full bg-sky-600 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700">
+          <button onClick={handleAddToWatchlist} className="rounded-full bg-sky-600 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700">
             Add to Wishlist
           </button>
         </div>

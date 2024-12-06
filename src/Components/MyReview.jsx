@@ -1,92 +1,104 @@
-import React, { useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MyReview = () => {
-const allReviews = useLoaderData()
-const [reviews, setreviews] = useState(allReviews)
+  const allReviews = useLoaderData();
+  const [reviews, setReviews] = useState(allReviews);
 
-  const deleteReview = id => {
+  const deleteReview = (id) => {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // delete from the database
-          fetch(`https://chill-gamer-server-beta.vercel.app/review/${id}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log("delete is done", data);
-              if (data.deletedCount) {
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success",
-                });
-                const remainingReviews = reviews.filter((review) => review._id!== id);
-                setreviews(remainingReviews);
-              }
-  
-            });
-        }
-      });
-    };
-  
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Delete from the database
+        fetch(`https://chill-gamer-server-beta.vercel.app/review/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your review has been deleted.",
+                icon: "success",
+              });
+              const remainingReviews = reviews.filter(
+                (review) => review._id !== id
+              );
+              setReviews(remainingReviews);
+            }
+          });
+      }
+    });
+  };
 
-    return (
-        <div className="my-16">
-      <h2 className="text-3xl text-center pb-4">Reviews : {reviews.length}</h2>
-
-      <div className="overflow-x-auto w-[60%] mx-auto">
-        <table className="table">
-          {/* head */}
+  return (
+    <div className="my-16">
+      <div className="overflow-x-auto w-[60%] mx-auto shadow-xl">
+        <table className="w-full  border border-gray-100">
+          {/* Table Head */}
           <thead>
-            <tr className="text-xl bg-orange-700 text-white">
-              <th>SL</th>
-              <th>Title</th>
-              <th>Genre</th>
-              <th>Rating</th>
-              <th>Actions</th>
+            <tr className="bg-[#333333] text-white">
+              <th className="py-3 px-6 text-center border-b">SL</th>
+              <th className="py-3 px-6 text-start border-b">Title</th>
+              <th className="py-3 px-6 text-start border-b">Genre</th>
+              <th className="py-3 px-6 text-center border-b">Rating</th>
+              <th className="py-3 px-6 text-center border-b">Actions</th>
             </tr>
           </thead>
+          {/* Table Body */}
           <tbody>
-            {/* row 1 */}
-
-            {reviews.map((review,index) => (
-              <tr className="text-lg" key={review._id}>
-                <th>{index+1}</th>
-                <td>{review.title}</td>
-                <td>{review.genre}</td> 
-                <td>{review.rating}</td>
-                <td >
-                 <Link to={`/updateReview/${review._id}`}>
-                 <button 
-                  className="btn btn-sm mr-4 bg-[#f0a544] text-white">
-                    <FaEdit></FaEdit>
+            {reviews.length > 0 ? (
+              reviews.map((review, index) => (
+                <tr key={review._id} className="hover:bg-gray-50">
+                  <td className="py-4 px-6 text-center border-b">{index + 1}</td>
+                  <td className="py-4 px-6 text-start border-b">
+                    {review.title}
+                  </td>
+                  <td className="py-4 px-6 text-start border-b">
+                    {review.genre}
+                  </td>
+                  <td className="py-4 px-6 text-center border-b">
+                    {review.rating}
+                  </td>
+                  <td className="py-4 px-6 text-center border-b">
+                    <Link to={`/updateReview/${review._id}`}>
+                      <button className="btn bg-[#f0a544] text-white btn-sm ">
+                        <FaEdit />
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => deleteReview(review._id)}
+                      className="btn btn-error text-white btn-sm ml-4"
+                    >
+                      <FaTrash />
                     </button>
-                 </Link>
-                  <button
-                   onClick={()=>deleteReview(review._id)}
-                    className="btn btn-sm btn-error text-white"
-                  >
-                    <FaTrash></FaTrash>
-                  </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="py-4 px-6 text-center border-b text-gray-500"
+                >
+                  No reviews found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
     </div>
-    );
+  );
 };
 
 export default MyReview;
