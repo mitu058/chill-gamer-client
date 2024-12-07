@@ -46,7 +46,7 @@ const handelAddReview = e =>{
   return (
     <div>
       <div className="flex flex-col justify-center items-center my-10">
-        <div className="lg:w-[40%] mx-auto space-y-6 rounded-lg border bg-white p-10 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+        <div className="lg:w-[40%] mx-auto space-y-6 rounded-lg border  p-10 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
           <div className="flex flex-col space-y-1">
             <h3 className="text-3xl text-center font-bold tracking-tight">
               Add New Review

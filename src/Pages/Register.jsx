@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-  const { creatUser,setUser } = useContext(AuthContext);
+  const { creatUser,setUser,updateUserProfile } = useContext(AuthContext);
   const [showPasswoed, setShowPassword] = useState(false);
+  const navigate = useNavigate()
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -41,7 +42,11 @@ const Register = () => {
 
     creatUser(email, password)
       .then((result) => {
-        console.log("firebase user created", result.user);
+        const user = result.user;
+        console.log("firebase user created", user);
+        setUser(user)
+        updateUserProfile({displayName:name,photoURL:photo})
+        // save user to the database
         const newUser = { name, email };
         fetch("https://chill-gamer-server-beta.vercel.app/users", {
           method: "POST",
@@ -60,14 +65,9 @@ const Register = () => {
                 icon: "success",
                 confirmButtonText: "Close",
               });
+              navigate('/')
             }
-          });
-          const profile = {
-            displayName: name,
-            photoURL: photo,
-          };
-          updateProfile(auth.currentUser, profile);
-        
+          });     
       })
       
       

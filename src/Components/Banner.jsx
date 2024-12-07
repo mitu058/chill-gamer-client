@@ -4,29 +4,35 @@ const Banner = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
   const carouselImages = [
     {
-      image: "https://i.ibb.co/sgx6FGD/adventure.jpg",
-      title: "Epic Adventure Awaits",
-      description: "Join a thrilling adventure in mystical lands. Explore, battle, and uncover hidden secrets!",
-    },
-    {
-      image: "https://i.ibb.co/dPXBBNj/rpg.jpg",
+      image: "https://i.ibb.co.com/4drS22J/rpg2.jpg",
       title: "RPG: Shape Your Destiny",
-      description: "Dive deep into a world of magic and combat. Customize your character and become a hero!",
+      description:
+        "Dive deep into a world of magic and combat. Customize your character and become a hero!",
     },
     {
-      image: "https://i.ibb.co/LpZMzyf/dom.jpg",
-      title: "Master the Game of Dominoes",
-      description: "Challenge friends and sharpen your strategy skills in this classic board game!",
-    },
-    {
-      image: "https://i.ibb.co/Vq1DFSw/pubg-battlegrounds-9i69f.jpg",
+      image: "https://i.ibb.co.com/yBxcXs7/pubg2.jpg",
       title: "Battle Royale: PUBG",
-      description: "Fight for survival in this intense, fast-paced battle royale game. Be the last one standing!",
+      description:
+        "Fight for survival in this intense, fast-paced battle royale game. Be the last one standing!",
     },
     {
-      image: "https://i.ibb.co/z6zXCN4/forntnight.jpg",
+      image: "https://i.ibb.co.com/KmmnRPV/DOOM-Eternal-FI.jpg",
+      title: "Master the Game of Dominoes",
+      description:
+        "Challenge friends and sharpen your strategy skills in this classic board game!",
+    },
+    {
+      image: "https://i.ibb.co.com/vcvmbq1/uncharted.jpg",
+
+      title: "Epic Adventure Awaits",
+      description:
+        "Join a thrilling adventure in mystical lands. Explore, battle, and uncover hidden secrets!",
+    },
+    {
+      image: "https://i.ibb.co.com/LP1wctr/10-most.jpg",
       title: "Fortnite: The Ultimate Battle",
-      description: "Build, shoot, and survive in this popular multiplayer online battle royale game!",
+      description:
+        "Build, shoot, and survive in this popular multiplayer online battle royale game!",
     },
   ];
 
@@ -108,9 +114,9 @@ const Banner = () => {
               alt={`Slider - ${idx + 1}`}
             />
             {/* Text Overlay */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4 py-2 bg-opacity-50 bg-black rounded-md">
-              <h2 className="text-2xl font-bold">{slide.title}</h2>
-              <p className="mt-2">{slide.description}</p>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4 py-2 ">
+              <h2 className="text-5xl font-bold">{slide.title}</h2>
+              <p className="mt-2 text-lg font-bold">{slide.description}</p>
             </div>
           </div>
         ))}

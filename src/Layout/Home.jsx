@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from '../Components/Banner';
 import TopReview from '../Components/TopReview';
-import ThemeToggle from '../Components/ThemeToggle';
+import Trending from '../Components/Trending';
 
 const Home = () => {
     
@@ -10,6 +10,7 @@ const Home = () => {
         <div>
     <Banner></Banner>
     <TopReview></TopReview>
+    <Trending></Trending>
         </div>
     );
 };

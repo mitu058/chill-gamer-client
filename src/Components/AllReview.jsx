@@ -66,7 +66,7 @@ const AllReview = () => {
       {/* Display reviews */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {sortedReviews.map((review) => (
-          <div key={review._id} className="card bg-base-100 shadow-xl">
+          <div key={review._id} className="card bg-white shadow-xl">
             <figure>
               <img src={review.photo} alt={review.name} />
             </figure>

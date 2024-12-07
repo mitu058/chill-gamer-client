@@ -22,7 +22,7 @@ const MyWatchList = () => {
           <tbody>
             {watchlist && watchlist.length > 0 ? (
               watchlist.map((item, index) => (
-                <tr key={item._id} className="hover:bg-gray-50">
+                <tr key={item._id} className="hover:bg-white">
                   <td className="py-4 px-6 text-center border-b">{index + 1}</td>
                   <td className="py-4 px-6 text-center border-b">
                     <img
