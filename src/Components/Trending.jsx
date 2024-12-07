@@ -5,18 +5,30 @@ import { FaRegHeart } from "react-icons/fa";
 import action from "../assets/actionGame.jpg";
 import rpg from "../assets/eldenring.jpeg";
 import adventure from "../assets/addddd.jpg";
+import { Typewriter } from "react-simple-typewriter";
 
 const Trending = () => {
   return (
     <div>
         <div className="text-center">
-        <h2 className="text-4xl font-bold  mb-4">Trending Genres</h2>
+        <h2 className="text-4xl font-bold  mb-4">
+        <Typewriter
+          className="text-4xl font-bold mb-4 text-primary"
+          words={["Trending Genres"]}
+          loop={true}
+          cursor
+          cursorStyle="_"
+          typeSpeed={70}
+          deleteSpeed={50}
+          delaySpeed={800}
+        />
+        </h2>
   <p className="text-lg  mb-6">
     Explore the most popular game genres and their top-rated titles based on reviews from our community.
   </p>
         </div>
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 w-[80%] mx-auto">
-        <div className=" mx-auto my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
+        <div className=" mx-auto hover:scale-105 transition my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
           <div className="flex items-center justify-between gap-10 px-4 py-4">
             {/* Avatar image  */}
             <div className="flex items-center gap-3">
@@ -71,7 +83,7 @@ const Trending = () => {
           </div>
         </div>
 
-        <div className=" mx-auto my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
+        <div className=" mx-auto hover:scale-105 transition my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
           <div className="flex items-center justify-between gap-10 px-4 py-4">
             {/* Avatar image  */}
             <div className="flex items-center gap-3">
@@ -126,7 +138,7 @@ const Trending = () => {
           </div>
         </div>
 
-        <div className=" mx-auto my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
+        <div className=" mx-auto hover:scale-105 transition my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
           <div className="flex items-center justify-between gap-10 px-4 py-4">
             {/* Avatar image  */}
             <div className="flex items-center gap-3">

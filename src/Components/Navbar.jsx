@@ -7,7 +7,7 @@ import { ThemeContext } from "../Provider/ThemeProvider";
 const Navbar = () => {
   const { user, userLogOut } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  console.log(user);
+  
 
   const links = (
     <>
@@ -41,7 +41,9 @@ const Navbar = () => {
     <div className=" sticky top-0 z-50">
       <div
         className={`text-white navbar ${
-          theme == "light" ? "text-black bg-blue-400" : "bg-black"
+          theme == "light"
+            ? "text-black bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900"
+            : "bg-black"
         }`}
       >
         <div className="navbar-start">
@@ -76,50 +78,15 @@ const Navbar = () => {
               className="w-12 h-12 rounded-full object-cover"
             />
             <a className="text-2xl font-bold md:block lg:block hidden">
-              CyberArena
+              Chill Gamer
             </a>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal space-x-2 font-bold">{links}</ul>
         </div>
+
         <div className="navbar-end space-x-4">
-        {user && user.email ? (
-  <div className="relative group">
-    <img
-      className="w-10 h-10 rounded-full border-2 border-gray-300 shadow-md"
-      src={user?.photoURL}
-      alt="User Avatar"
-    />
-    <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm px-4 py-2 rounded-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out shadow-lg">
-      {user?.displayName}
-      <span className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 rotate-45 bg-gradient-to-r from-blue-500 to-purple-600"></span>
-    </div>
-  </div>
-) : (
-  ""
-)}
-
-          {user && user?.email ? (
-            <button onClick={userLogOut} className="btn btn-warning">
-              LogOut
-            </button>
-          ) : (
-            <Link to="/login" className="bg-[#E6533C] text-white btn font-bold">
-              Login
-            </Link>
-          )}
-
-          {user && user?.email ? (
-            ""
-          ) : (
-            <Link
-              to="/register"
-              className="btn bg-[#E6533C] text-white font-bold"
-            >
-              Register
-            </Link>
-          )}
           <button
             onClick={toggleTheme}
             className={`px-4 py-2 text-sm font-bold transition duration-300 rounded-md ${
@@ -137,11 +104,11 @@ const Navbar = () => {
               >
                 <path
                   d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                  class="fill-sky-400/20 stroke-black"
+                  class="fill-sky-400/20 stroke-white"
                 ></path>
                 <path
                   d="M12 4v1M17.66 6.344l-.828.828M20.005 12.004h-1M17.66 17.664l-.828-.828M12 20.01V19M6.34 17.664l.835-.836M3.995 12.004h1.01M6 6l.835.836"
-                  class="stroke-black"
+                  class="stroke-white"
                 ></path>
               </svg>
             ) : (
@@ -165,6 +132,49 @@ const Navbar = () => {
               </svg>
             )}
           </button>
+
+          {user && user.email ? (
+            <div className="relative group">
+              <img
+                className="w-10 h-10 rounded-full border-2 border-gray-300 shadow-md"
+                src={user?.photoURL}
+                alt="User Avatar"
+              />
+              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm px-4 py-2 rounded-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out shadow-lg">
+                {user?.displayName}
+                <span className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 rotate-45 bg-gradient-to-r from-blue-500 to-purple-600"></span>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {user && user?.email ? (
+            <button
+              onClick={userLogOut}
+              className="rounded-full bg-[#E63946] px-4 py-2 text-white transition-all duration-300 hover:scale-90"
+            >
+              LogOut
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="rounded-full bg-[#eb4034] px-5 py-2 text-white transition-all duration-300 hover:scale-90"
+            >
+              Login
+            </Link>
+          )}
+
+          {user && user?.email ? (
+            ""
+          ) : (
+            <Link
+              to="/register"
+              className=" rounded-full bg-[#eb4034] px-4 py-2 text-white transition-all duration-300 hover:scale-90"
+            >
+              Register
+            </Link>
+          )}
         </div>
       </div>
     </div>

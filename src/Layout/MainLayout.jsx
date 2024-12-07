@@ -1,22 +1,31 @@
-import React from 'react';
-import Navbar from '../Components/Navbar';
-import { Outlet } from 'react-router-dom';
-import Footer from '../Components/Footer';
-import Swal from 'sweetalert2'
+import React from "react";
+import Navbar from "../Components/Navbar";
+import { Outlet, useNavigation } from "react-router-dom";
+import Footer from "../Components/Footer";
+import Swal from "sweetalert2";
 import { Toaster } from "react-hot-toast";
 
-// bg-[#131325] text-white
-
 const MainLayout = () => {
-    return (
-        <div className=''>
-            <Navbar></Navbar>
-            <div className=''>
-                <Outlet></Outlet>
-            </div>
-            <Footer></Footer>
+  const navigaton = useNavigation();
+  const isNavigation = navigaton.state === "loading";
+  return (
+    <div className="">
+        <Toaster></Toaster>
+      {isNavigation ? (
+       <div className="flex justify-center items-center h-screen">
+         <span className="loading loading-spinner loading-lg"></span>
+       </div>
+      ) : (
+        <div>
+          <Navbar></Navbar>
+          <div className="">
+            <Outlet></Outlet>
+          </div>
+          <Footer></Footer>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default MainLayout;

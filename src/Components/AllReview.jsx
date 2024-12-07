@@ -31,7 +31,11 @@ const AllReview = () => {
   };
 
   return (
-    <div className="my-20 w-[80%] mx-auto">
+    <div className="my-16 w-[80%] mx-auto">
+      <div className="text-center pb-6">
+        <h2 className="text-4xl font-bold">All Reviews</h2>
+        <p>Discover a hub of honest and in-depth reviews for all your favorite games. Explore ratings, insights <br /> and experiences from gamers worldwide to guide your next pick.</p>
+      </div>
       <div className="flex justify-between mb-8">
         <div>
           <label className="mr-2 font-bold">Sort By:</label>
@@ -82,7 +86,7 @@ const AllReview = () => {
               <p>Year: {review.year}</p>
               <div className="card-actions justify-center">
                 <Link to={`/review/${review._id}`}>
-                  <button className="btn btn-sm btn-primary">
+                  <button className="py-2 px-6 text-sm rounded-full  bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white">
                     Explore Details
                   </button>
                 </Link>

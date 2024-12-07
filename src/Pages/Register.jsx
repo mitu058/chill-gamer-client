@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { creatUser,setUser,updateUserProfile } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const Register = () => {
     const password = from.password.value;
     const photo = from.photo.value;
 
-    console.log("register user", name, email, password, photo);
+    // console.log("register user", name, email, password, photo);
 
     if (password.length < 6) {
       Swal.fire({
@@ -43,7 +44,7 @@ const Register = () => {
     creatUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log("firebase user created", user);
+        // console.log("firebase user created", user);
         setUser(user)
         updateUserProfile({displayName:name,photoURL:photo})
         // save user to the database
@@ -57,22 +58,16 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("user save to database", data);
+            // console.log("user save to database", data);
             if (data.insertedId) {
-              Swal.fire({
-                title: "success!",
-                text: "User registered successfully",
-                icon: "success",
-                confirmButtonText: "Close",
-              });
+           toast.success('Successfully registered')
               navigate('/')
             }
           });     
       })
       
-      
       .catch((err) => {
-        console.error("error creating user", err);
+        toast.error('Failed To Register')
       });
   };
 
@@ -152,7 +147,7 @@ const Register = () => {
               type="url"
             />
           </div>
-          <button className="rounded-md text-2xl w-full bg-[#331A15] px-4 py-2 text-white transition-colors hover:bg-[#E3B577]">
+          <button className="rounded-md text-2xl w-full bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 px-4 py-2 text-white transition-colors ">
             Register
           </button>
         </form>

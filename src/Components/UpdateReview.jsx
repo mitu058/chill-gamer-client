@@ -19,7 +19,7 @@ const UpdateReview = () => {
         const review = from.review.value
     
         const updateReview = {title, rating, genre, year, name, email, photo, review}
-        console.log(updateReview);
+        // console.log(updateReview);
 
         fetch(`https://chill-gamer-server-beta.vercel.app/review/${_id}`, {
             method: 'PUT',
@@ -30,7 +30,7 @@ const UpdateReview = () => {
         })
        .then(res => res.json())
        .then(data =>{
-        console.log(data)
+        
         if(data.modifiedCount){
             Swal.fire({
                 title: 'Success!',
@@ -169,7 +169,7 @@ const UpdateReview = () => {
                 ></textarea>
               </div>
               {/* Submit Button */}
-              <button className="rounded-md text-xl bg-[#331A15] px-4 py-2 text-white transition-colors hover:bg-[#E3B577] btn btn-block">
+              <button className="rounded-md text-xl bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 px-4 py-2  text-white transition-colors  btn btn-block">
                 Update Review
               </button>
             </form>

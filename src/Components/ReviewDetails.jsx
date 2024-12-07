@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const ReviewDetails = () => {
+  const {user} = useContext(AuthContext)
   const reviewdetails = useLoaderData();
   const { name, title, genre, email, rating, review, photo } = reviewdetails;
 
@@ -10,8 +14,9 @@ const ReviewDetails = () => {
     e.preventDefault();
 
     // Use loader data directly to create the watchlist item
-    const watchlistItem = { title, genre, rating, name, email, photo, review };
-    console.log("Add to watchlist", watchlistItem);
+    const watchlistItem = { title, genre, rating, name, email:user?.email, photo, review };
+    console.log(watchlistItem)
+    // console.log("Add to watchlist", watchlistItem);
 
     fetch("https://chill-gamer-server-beta.vercel.app/watchlist", {
       method: "POST",
@@ -22,7 +27,11 @@ const ReviewDetails = () => {
       .then((data) => {
         console.log("review saved to database", data);
         if (data.insertedId) {
-          alert("Added to Watchlist successfully!");
+          Swal.fire({
+            text: 'Review add your watchlist',
+            icon: 'success',
+            confirmButtonText: 'Close'
+          })
         }
       });
   };
@@ -79,7 +88,7 @@ const ReviewDetails = () => {
         </div>
 
         <div className="flex justify-center">
-          <button onClick={handleAddToWatchlist} className="rounded-full bg-sky-600 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700">
+          <button onClick={handleAddToWatchlist} className="rounded-full bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700">
             Add to Wishlist
           </button>
         </div>

@@ -1,50 +1,46 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
-
+import toast from "react-hot-toast";
 
 const Login = () => {
-const {signInUser} = useContext(AuthContext)
-const provider = new GoogleAuthProvider();
+  const { signInUser } = useContext(AuthContext);
+  const provider = new GoogleAuthProvider();
+  const navigate = useNavigate()
+  const handelLogin = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    // console.log('login user', email, password);
 
+    signInUser(email, password)
+      .then((result) => {
+        // console.log('firebase user login', result.user);
+        toast.success("successfully login")  
+      navigate('/')
+      })
+      .catch((error) => {
+        toast.error("Google login failed!")
+      });
+  };
 
-const handelLogin = e =>{
-  e.preventDefault()
-  const from = e.target
-  const email = from.email.value
-  const password = from.password.value
-  console.log('login user', email, password);
-
-  signInUser(email, password)
-  .then((result)=>{
-    console.log('firebase user login', result.user);
-   
-  })
-  .catch((error) => {
-    console.error('error logging in', error);
-    // Handle error message or redirect to login page
-    alert('failed to login')
-  })
-  
-}
-
-const googleLogin = () => {
-  signInWithPopup(auth,provider)
-  .then((result) => {
-    console.log('google user login', result.user);
-  
-  })
-  .catch((error) => {
-    console.error('error logging in with google', error);
-    // Handle error message or redirect to login page
-    alert('failed to login with google')
-  });
-}
+  const googleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // console.log('google user login', result.user);
+        toast.success("successfully login with google")
+      navigate('/')
+      })
+      .catch((error) => {
+        toast.error("Google login failed!")
+      });
+  };
 
   return (
-    <div className="mx-auto my-14 w-full max-w-md space-y-4 rounded-lg border bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
+    <div className="mx-auto  my-14 w-full max-w-md space-y-4 rounded-lg border bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
       <h1 className="text-3xl font-semibold tracking-tight text-center">
         Log In
       </h1>
@@ -89,7 +85,7 @@ const googleLogin = () => {
             </a>
           </div>
         </div>
-        <button className="rounded-md w-full bg-[#331A15] px-4 text-xl py-2 text-white transition-colors hover:bg-[#E3B577]">
+        <button className="rounded-md w-full bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 px-4 text-xl py-2 text-white transition-colors ">
           Login
         </button>
       </form>
@@ -106,7 +102,10 @@ const googleLogin = () => {
         <hr className="flex-1 border-gray-400" />
       </div>
       {/* Social icons */}
-      <button onClick={googleLogin} className="mx-auto mb-4 mt-8 block rounded-md border px-5 py-2 shadow-lg duration-200 hover:bg-zinc-400/10 dark:border-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-white">
+      <button
+        onClick={googleLogin}
+        className="bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white mx-auto mb-4 mt-8 block rounded-md border px-5 py-2 shadow-lg duration-200 hover:bg-zinc-400/10 dark:border-zinc-700 dark:hover:bg-zinc-700 dark:hover:text-white"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 32 32"

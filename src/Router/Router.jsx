@@ -11,6 +11,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import TopReview from "../Components/TopReview";
 import MyWatchList from "../Components/MyWatchList";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
 {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
         },
         {
             path:'/addReview',
-            element:<AddReview></AddReview>
+            element:<PrivateRouter><AddReview></AddReview></PrivateRouter>
         },
         {
             path:'/Reviews',
@@ -34,12 +35,12 @@ const router = createBrowserRouter([
         },
         {
             path:'/review/:id',
-            element:<ReviewDetails></ReviewDetails>,
+            element:<PrivateRouter><ReviewDetails></ReviewDetails></PrivateRouter>,
             loader:({params})=> fetch(`https://chill-gamer-server-beta.vercel.app/review/${params.id}`)
         },
         {
             path:'/myreview',
-            element:<MyReview></MyReview>,
+            element:<PrivateRouter><MyReview></MyReview></PrivateRouter>,
             loader:()=> fetch('https://chill-gamer-server-beta.vercel.app/review')
         },
         {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
         },
         {
             path:'/myWatchlist',
-            element:<MyWatchList></MyWatchList>,
+            element:<PrivateRouter><MyWatchList></MyWatchList></PrivateRouter>,
             loader:()=> fetch('https://chill-gamer-server-beta.vercel.app/watchlist')
 
 

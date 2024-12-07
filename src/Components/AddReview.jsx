@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddReview = () => {
+
+const {user} = useContext(AuthContext)
+console.log(user);
 
 const handelAddReview = e =>{
     e.preventDefault()
@@ -17,7 +21,7 @@ const handelAddReview = e =>{
     const review = from.review.value
 
     const newReview = {title, rating, genre, year, name, email, photo, review}
-    console.log(newReview);
+    // console.log(newReview);
   
     fetch('https://chill-gamer-server-beta.vercel.app/review',{
         method: 'POST',
@@ -28,10 +32,9 @@ const handelAddReview = e =>{
     })
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
+        // console.log(data);
         if(data.insertedId){
             Swal.fire({
-                title: 'success!',
                 text: 'Review added successfully',
                 icon: 'success',
                 confirmButtonText: 'Close'
@@ -46,7 +49,7 @@ const handelAddReview = e =>{
   return (
     <div>
       <div className="flex flex-col justify-center items-center my-10">
-        <div className="lg:w-[40%] mx-auto space-y-6 rounded-lg border  p-10 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+        <div className="lg:w-[40%] mx-auto space-y-6 rounded-lg border bg-white  p-10 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
           <div className="flex flex-col space-y-1">
             <h3 className="text-3xl text-center font-bold tracking-tight">
               Add New Review
@@ -122,6 +125,8 @@ const handelAddReview = e =>{
                     Name
                   </label>
                   <input
+                  readOnly
+                  value={user?.displayName}
                     className="flex h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
                     name="name"
                     type="text"
@@ -133,6 +138,8 @@ const handelAddReview = e =>{
                     Email
                   </label>
                   <input
+                  readOnly
+                  value={user?.email}
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     placeholder="Enter your email"
                     name="email"
@@ -164,7 +171,7 @@ const handelAddReview = e =>{
                 ></textarea>
               </div>
               {/* Submit Button */}
-              <button className="rounded-md text-xl bg-[#331A15] px-4 py-2 text-white transition-colors hover:bg-[#E3B577] btn btn-block">
+              <button className="rounded-md text-xl bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 px-4 py-2 text-white transition-colors btn btn-block">
                 Add Review
               </button>
             </form>
