@@ -33,7 +33,7 @@ const AllReview = () => {
   return (
     <div className="my-16 w-[80%] mx-auto">
       <div className="text-center pb-6">
-        <h2 className="text-4xl font-bold">All Reviews</h2>
+        <h2 className="text-4xl pb-4 font-bold">All Reviews</h2>
         <p>Discover a hub of honest and in-depth reviews for all your favorite games. Explore ratings, insights <br /> and experiences from gamers worldwide to guide your next pick.</p>
       </div>
       <div className="flex justify-between mb-8">

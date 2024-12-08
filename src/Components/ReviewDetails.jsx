@@ -13,10 +13,7 @@ const ReviewDetails = () => {
 
   const handleAddToWatchlist = (e) => {
     e.preventDefault();
-
-    // Use loader data directly to create the watchlist item
     const watchlistItem = { title, genre, rating, name, writerEmail:email,  email:user?.email, photo, review };
-    console.log(watchlistItem)
     // console.log("Add to watchlist", watchlistItem);
 
     fetch("https://chill-gamer-server-beta.vercel.app/watchlist", {
@@ -26,7 +23,7 @@ const ReviewDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("review saved to database", data);
+        // console.log("review saved to database", data);
         if (data.insertedId) {
           Swal.fire({
             text: 'Review add your watchlist',
@@ -42,7 +39,7 @@ const ReviewDetails = () => {
 
 
   return (
-    <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-900 py-10 px-4">
+    <div className="flex flex-col items-center  py-10 px-4">
       <div className="relative w-full max-w-4xl mb-10">
         <img
           src={photo}

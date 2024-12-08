@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const Register = () => {
@@ -85,13 +85,13 @@ const Register = () => {
         <form onSubmit={handleRegister} className="space-y-6">
           <div className="space-y-2 text-sm">
             <label
-              className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300"
+              className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300"
               htmlFor="email"
             >
               Name
             </label>
             <input
-              className="flex text-lg h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
+              className="flex text-base h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
               placeholder="Enter your name"
               name="name"
               type="text"
@@ -99,13 +99,13 @@ const Register = () => {
           </div>
           <div className="space-y-2 text-sm">
             <label
-              className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300"
+              className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300"
               htmlFor="email"
             >
               Email
             </label>
             <input
-              className="flex text-xl h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
+              className="flex text-base h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
               placeholder="Enter your email"
               name="email"
               type="email"
@@ -113,13 +113,13 @@ const Register = () => {
           </div>
           <div className="space-y-2 text-sm relative">
             <label
-              className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300"
+              className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300"
               htmlFor="password_"
             >
               Password
             </label>
             <input
-              className="flex text-xl h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
+              className="flex text-base h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
               type={showPasswoed ? "text" : "password"}
               placeholder="password"
               name="password"
@@ -135,13 +135,13 @@ const Register = () => {
 
           <div className="space-y-2 text-sm">
             <label
-              className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300"
+              className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300"
               htmlFor="password_"
             >
               Photo
             </label>
             <input
-              className="flex text-xl h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
+              className="flex text-base h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
               placeholder="photo"
               name="photo"
               type="url"
@@ -151,7 +151,7 @@ const Register = () => {
             Register
           </button>
         </form>
-        <p className="text-center text-lg text-zinc-700 pt-4 dark:text-zinc-300">
+        <p className="text-center text-base text-zinc-700 pt-4 dark:text-zinc-300">
           Don&apos;t have an account?
           <Link to="/login" className="font-semibold underline">
             Login

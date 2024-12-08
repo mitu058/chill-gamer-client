@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
   const provider = new GoogleAuthProvider();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [showPasswoed, setShowPassword] = useState(false);
+
   const handelLogin = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -19,11 +23,11 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         // console.log('firebase user login', result.user);
-        toast.success("successfully login")  
-      navigate('/')
+        toast.success("successfully login");
+        navigate("/");
       })
       .catch((error) => {
-        toast.error("Failed to login!")
+        toast.error("Failed to login!");
       });
   };
 
@@ -31,11 +35,11 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         // console.log('google user login', result.user);
-        toast.success("successfully login with google")
-      navigate('/')
+        toast.success("successfully login with google");
+        navigate("/");
       })
       .catch((error) => {
-        toast.error("Google login failed!")
+        toast.error("Google login failed!");
       });
   };
 
@@ -49,33 +53,41 @@ const Login = () => {
         <div className="space-y-2 text-sm">
           <label
             htmlFor="username"
-            className="block text-xl text-zinc-700 dark:text-zinc-300 font-medium"
+            className="block text-base text-zinc-700 dark:text-zinc-300 font-medium"
           >
             Email
           </label>
           <input
-            className="flex text-lg h-10 w-full rounded-md border px-3 py-2  focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
+            className="flex text-base h-10 w-full rounded-md border px-3 py-2  focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
             placeholder="Enter email"
             name="email"
             type="email"
             required
           />
         </div>
-        <div className="space-y-2 text-sm">
+        <div className="space-y-2 text-sm relative">
           <label
             htmlFor="password"
-            className="block text-xl text-zinc-700 dark:text-zinc-300 font-medium"
+            className="block text-base text-zinc-700 dark:text-zinc-300 font-medium"
           >
             Password
           </label>
           <input
-            className="flex h-10 w-full rounded-md border px-3 py-2 text-lg focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
+            className="flex h-10 w-full rounded-md border px-3 py-2 text-base focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
             id="password"
             placeholder="Enter password"
             name="password"
-            type="password"
+            type={showPasswoed ? "text" : "password"}
             required
           />
+
+          <div
+            onClick={() => setShowPassword(!showPasswoed)}
+            className="btn btn-xs absolute right-3 top-8"
+          >
+            {showPasswoed ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+          </div>
+
           <div className="flex justify-end text-xs">
             <a
               href="#"
@@ -89,7 +101,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      <p className="text-center text-lg text-zinc-700 dark:text-zinc-300">
+      <p className="text-center text-base text-zinc-700 dark:text-zinc-300">
         Don&apos;t have an account?
         <Link to="/register" className="font-semibold underline">
           Register

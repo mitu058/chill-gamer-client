@@ -10,7 +10,7 @@ const MyReview = () => {
   const allReviews = useLoaderData();
   const [reviews, setReviews] = useState([]);
   // const [reviews, setReviews] = useState(allReviews);
-console.log(reviews.length);
+
 
   useEffect(() => {
     if (allReviews?.length > 0 && user?.email) {
