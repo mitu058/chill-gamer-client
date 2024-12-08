@@ -77,7 +77,7 @@ const Register = () => {
         <h3 className="text-3xl text-center font-bold tracking-tight">
           Register Now
         </h3>
-        <p className="text-lg text-center text-zinc-500 dark:text-zinc-400">
+        <p className="text-base text-center text-zinc-500 dark:text-zinc-400">
           Please fill in the form to create an account.
         </p>
       </div>

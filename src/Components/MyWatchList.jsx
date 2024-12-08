@@ -7,7 +7,9 @@ import Animation from '../lottie/noData.json'
 const MyWatchList = () => {
   const { user } = useContext(AuthContext);
   const watchlist = useLoaderData();
+  // console.log(watchlis
   const [list, setList] = useState([]);
+console.log(list[0]);
 
   useEffect(() => {
     if (watchlist?.length > 0 && user?.email) {
@@ -20,8 +22,8 @@ const MyWatchList = () => {
 
   return (
     <div>
-      <div className="my-16">
-        <table className="w-[80%] mx-auto shadow-xl border border-gray-100">
+      <div className="my-16 overflow-x-auto">
+        <table className="lg:w-[80%] mx-auto shadow-xl border border-gray-100">
           <thead>
             <tr className="bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white">
               <th className="py-3 px-6 text-center border-b">SL</th>
@@ -49,7 +51,7 @@ const MyWatchList = () => {
                   </td>
                   <td className="py-4 px-6 text-start border-b">{item.name}</td>
                   <td className="py-4 px-6 text-start border-b">
-                    {item.email}
+                    {item.writerEmail}
                   </td>
 
                   <td className="py-4 px-6 text-start border-b">
@@ -66,7 +68,7 @@ const MyWatchList = () => {
             ) : (
               <tr>
                 <td colSpan="7" className="py-4 px-6 text-center">
-                  No data available
+                
                   <Lottie animationData={Animation} loop={true} className="h-96"></Lottie>
                 </td>
               </tr>

@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import Lottie from "lottie-react";
+import dollAnimation from '../lottie/nodataGirl.json'
 
 const MyReview = () => {
   const { user } = useContext(AuthContext);
   const allReviews = useLoaderData();
   const [reviews, setReviews] = useState([]);
+  // const [reviews, setReviews] = useState(allReviews);
 console.log(reviews.length);
 
   useEffect(() => {
@@ -47,8 +50,8 @@ console.log(reviews.length);
   };
 
   return (
-    <div className="my-16">
-      <div className="overflow-x-auto w-[60%] mx-auto shadow-xl">
+    <div className="my-16 overflow-x-auto">
+      <div className=" lg:w-[60%] mx-auto shadow-xl">
         <table className="w-full border border-gray-100">
           {/* Table Head */}
           <thead>
@@ -66,7 +69,7 @@ console.log(reviews.length);
               reviews.map((review, index) => (
                 <tr key={review._id} className="hover:bg-gray-100">
                   <td className="py-4 px-6 text-center border-b">{index + 1}</td>
-                  <td className="py-4 px-6 text-start border-b">{review.email}</td>
+                  <td className="py-4 px-6 text-start border-b">{review.title}</td>
                   <td className="py-4 px-6 text-start border-b">{review.genre}</td>
                   <td className="py-4 px-6 text-center border-b">{review.rating}</td>
                   <td className="py-4 px-6 text-center border-b">
@@ -90,7 +93,7 @@ console.log(reviews.length);
                   colSpan="5"
                   className="py-4 px-6 text-center border-b text-gray-500"
                 >
-                  No reviews found.
+                  <Lottie animationData={dollAnimation} loop={true} className="h-96"></Lottie>
                 </td>
               </tr>
             )}

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddReview = () => {
-
+const navigate = useNavigate()
 const {user} = useContext(AuthContext)
 console.log(user);
 
@@ -39,6 +40,8 @@ const handelAddReview = e =>{
                 icon: 'success',
                 confirmButtonText: 'Close'
               })
+              from.reset()
+              navigate('/myreview')
         }
   
     })
@@ -54,7 +57,7 @@ const handelAddReview = e =>{
             <h3 className="text-3xl text-center font-bold tracking-tight">
               Add New Review
             </h3>
-            <p className="text-xl text-center text-zinc-500 dark:text-zinc-400">
+            <p className="text-base text-center text-zinc-500 dark:text-zinc-400">
               Share your gaming experience! Add your favorite game, write a
               review, and let others know your thoughts.
             </p>
@@ -64,7 +67,7 @@ const handelAddReview = e =>{
               {/* First Grid: Title and Rating */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Game Title
                   </label>
                   <input
@@ -75,7 +78,7 @@ const handelAddReview = e =>{
                   />
                 </div>
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Rating (1-10)
                   </label>
                   <input
@@ -91,7 +94,7 @@ const handelAddReview = e =>{
               {/* Second Grid: Genre and Publishing Year */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Genre
                   </label>
                   <select
@@ -107,7 +110,7 @@ const handelAddReview = e =>{
                   </select>
                 </div>
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Publishing Year
                   </label>
                   <input
@@ -121,7 +124,7 @@ const handelAddReview = e =>{
               {/* Third Grid: User Email */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Name
                   </label>
                   <input
@@ -134,7 +137,7 @@ const handelAddReview = e =>{
                   />
                 </div>
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Email
                   </label>
                   <input
@@ -149,7 +152,7 @@ const handelAddReview = e =>{
               </div>
               {/* Full-width: Game Cover Image and Description */}
               <div className="space-y-2 text-sm">
-                <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                  Thumbnail
                 </label>
                 <input
@@ -160,7 +163,7 @@ const handelAddReview = e =>{
                 />
               </div>
               <div className="space-y-2 text-sm">
-                <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                    Description
                 </label>
                 <textarea

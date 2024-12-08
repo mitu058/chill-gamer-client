@@ -152,14 +152,14 @@ const Navbar = () => {
           {user && user?.email ? (
             <button
               onClick={userLogOut}
-              className="rounded-full bg-[#E63946] px-4 py-2 text-white transition-all duration-300 hover:scale-90"
+              className="rounded-full bg-[#e91e63] hover:bg-[#d81b60] px-4 py-2 text-white transition-all duration-300 hover:scale-90"
             >
               LogOut
             </button>
           ) : (
             <Link
               to="/login"
-              className="rounded-full bg-[#eb4034] px-5 py-2 text-white transition-all duration-300 hover:scale-90"
+              className="rounded-full bg-[#e91e63] hover:bg-[#d81b60] px-5 py-2 text-white transition-all duration-300 hover:scale-90"
             >
               Login
             </Link>
@@ -170,7 +170,7 @@ const Navbar = () => {
           ) : (
             <Link
               to="/register"
-              className=" rounded-full bg-[#eb4034] px-4 py-2 text-white transition-all duration-300 hover:scale-90"
+              className=" rounded-full bg-[#e91e63] hover:bg-[#d81b60] px-4 py-2 text-white transition-all duration-300 hover:scale-90"
             >
               Register
             </Link>

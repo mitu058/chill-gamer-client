@@ -75,18 +75,18 @@ const AllReview = () => {
               <img src={review.photo} alt={review.name} />
             </figure>
             <div className="p-6">
-              <h2 className="card-title">
+              <h2 className="card-title pb-2">
                 {review.name}
-                <div className="badge badge-secondary">
+                <div className="badge badge-secondary ">
                   Rating: {review.rating}
                 </div>
               </h2>
               <p>Title: {review.title}</p>
               <p>Genre: {review.genre}</p>
               <p>Year: {review.year}</p>
-              <div className="card-actions justify-center">
+              <div className="card-actions mt-3 justify-center">
                 <Link to={`/review/${review._id}`}>
-                  <button className="py-2 px-6 text-sm rounded-full  bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white">
+                  <button className="py-2 px-6 text-sm rounded-full   bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white">
                     Explore Details
                   </button>
                 </Link>

@@ -49,7 +49,7 @@ const UpdateReview = () => {
             <h3 className="text-3xl text-center font-bold tracking-tight">
               Update Your Review
             </h3>
-            <p className="text-xl text-center text-zinc-500 dark:text-zinc-400">
+            <p className="text-base text-center text-zinc-500 dark:text-zinc-400">
             Update your review and share your gaming journey! Edit your details, add a favorite game, write a review, and express your thoughts with the gaming community.
             </p>
           </div>
@@ -58,7 +58,7 @@ const UpdateReview = () => {
               {/* First Grid: Title and Rating */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Game Title
                   </label>
                   <input
@@ -70,8 +70,8 @@ const UpdateReview = () => {
                   />
                 </div>
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
-                    Rating (1-5)
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                    Rating (1-10)
                   </label>
                   <input
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
@@ -80,14 +80,14 @@ const UpdateReview = () => {
                     defaultValue={rating}
                     type="number"
                     min="1"
-                    max="5"
+                    max="10"
                   />
                 </div>
               </div>
               {/* Second Grid: Genre and Publishing Year */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Genre
                   </label>
                   <select
@@ -104,7 +104,7 @@ const UpdateReview = () => {
                   </select>
                 </div>
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Publishing Year
                   </label>
                   <input
@@ -119,7 +119,7 @@ const UpdateReview = () => {
               {/* Third Grid: User Email */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Name
                   </label>
                   <input
@@ -131,7 +131,7 @@ const UpdateReview = () => {
                   />
                 </div>
                 <div className="space-y-2 text-sm">
-                  <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                  <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                     Email
                   </label>
                   <input
@@ -145,7 +145,7 @@ const UpdateReview = () => {
               </div>
               {/* Full-width: Game Cover Image and Description */}
               <div className="space-y-2 text-sm">
-                <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                  Thumbnail
                 </label>
                 <input
@@ -157,7 +157,7 @@ const UpdateReview = () => {
                 />
               </div>
               <div className="space-y-2 text-sm">
-                <label className="text-xl font-medium leading-none text-zinc-700 dark:text-zinc-300">
+                <label className="text-base font-medium leading-none text-zinc-700 dark:text-zinc-300">
                    Description
                 </label>
                 <textarea

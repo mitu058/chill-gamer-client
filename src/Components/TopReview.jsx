@@ -10,7 +10,7 @@ const TopReview = () => {
 
   return (
     <div className="my-20 px-4 lg:w-[80%] mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-4 ">
+      <h1 className="text-3xl font-bold text-center mb-4 text-purple-700">
         <Typewriter
           className="text-4xl font-bold mb-4 text-primary"
           words={[" Discover the Top Rated Games Loved by Gamers Worldwide."]}

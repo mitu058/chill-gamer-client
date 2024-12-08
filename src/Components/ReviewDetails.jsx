@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const ReviewDetails = () => {
+  const navigate = useNavigate()
   const {user} = useContext(AuthContext)
   const reviewdetails = useLoaderData();
   const { name, title, genre, email, rating, review, photo } = reviewdetails;
@@ -14,7 +15,7 @@ const ReviewDetails = () => {
     e.preventDefault();
 
     // Use loader data directly to create the watchlist item
-    const watchlistItem = { title, genre, rating, name, email:user?.email, photo, review };
+    const watchlistItem = { title, genre, rating, name, writerEmail:email,  email:user?.email, photo, review };
     console.log(watchlistItem)
     // console.log("Add to watchlist", watchlistItem);
 
@@ -32,6 +33,7 @@ const ReviewDetails = () => {
             icon: 'success',
             confirmButtonText: 'Close'
           })
+          navigate('/myWatchlist')
         }
       });
   };

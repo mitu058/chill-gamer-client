@@ -11,7 +11,7 @@ const Trending = () => {
   return (
     <div>
         <div className="text-center">
-        <h2 className="text-4xl font-bold  mb-4">
+        <h2 className="text-4xl font-bold text-purple-700 mb-4">
         <Typewriter
           className="text-4xl font-bold mb-4 text-primary"
           words={["Trending Genres"]}
