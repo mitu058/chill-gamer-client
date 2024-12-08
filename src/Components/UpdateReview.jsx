@@ -68,6 +68,7 @@ const UpdateReview = () => {
                     name="title"
                     defaultValue={title}
                     type="text"
+                    required
                   />
                 </div>
                 <div className="space-y-2 text-sm">
@@ -82,6 +83,7 @@ const UpdateReview = () => {
                     type="number"
                     min="1"
                     max="10"
+                    required
                   />
                 </div>
               </div>
@@ -94,6 +96,7 @@ const UpdateReview = () => {
                   <select
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     name="genre"
+                    required
                     defaultValue={genre}
                   >
                     <option value="Action">Action</option>
@@ -114,6 +117,7 @@ const UpdateReview = () => {
                     name="year"
                     defaultValue={year}
                     type="number"
+                    required
                   />
                 </div>
               </div>
@@ -155,6 +159,7 @@ const UpdateReview = () => {
                   name="photo"
                   defaultValue={photo}
                   type="url"
+                  required
                 />
               </div>
               <div className="space-y-2 text-sm">
@@ -165,6 +170,7 @@ const UpdateReview = () => {
                   className="flex w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                   placeholder="Write your detailed review"
                   name="review"
+                  required
                   defaultValue={review}
                   rows="4"
                 ></textarea>

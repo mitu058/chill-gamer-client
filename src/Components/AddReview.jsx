@@ -75,6 +75,7 @@ const handelAddReview = e =>{
                     placeholder="Enter game title"
                     name="title"
                     type="text"
+                    required
                   />
                 </div>
                 <div className="space-y-2 text-sm">
@@ -88,6 +89,7 @@ const handelAddReview = e =>{
                     type="number"
                     min="1"
                     max="10"
+                    required
                   />
                 </div>
               </div>
@@ -100,6 +102,7 @@ const handelAddReview = e =>{
                   <select
                     className="flex h-10 w-full rounded-md border px-3 py-2 focus-visible:outline-none dark:border-zinc-700"
                     name="genre"
+                    required
                   >
                     <option value="Action">Action</option>
                     <option value="RPG">RPG</option>
@@ -118,6 +121,7 @@ const handelAddReview = e =>{
                     placeholder="Enter publishing year"
                     name="year"
                     type="number"
+                    required
                   />
                 </div>
               </div>
@@ -133,6 +137,7 @@ const handelAddReview = e =>{
                     className="flex h-10 w-full rounded-md border px-3 py-2  focus-visible:outline-none dark:border-zinc-700"
                     name="name"
                     type="text"
+                    
                    
                   />
                 </div>
@@ -160,6 +165,7 @@ const handelAddReview = e =>{
                   placeholder="Enter game cover image URL"
                   name="photo"
                   type="url"
+                  required
                 />
               </div>
               <div className="space-y-2 text-sm">
@@ -171,6 +177,7 @@ const handelAddReview = e =>{
                   placeholder="Write your detailed review"
                   name="review"
                   rows="4"
+                  required
                 ></textarea>
               </div>
               {/* Submit Button */}
