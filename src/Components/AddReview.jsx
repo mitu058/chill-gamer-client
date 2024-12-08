@@ -182,7 +182,7 @@ const handelAddReview = e =>{
               </div>
               {/* Submit Button */}
               <button className="rounded-md text-xl bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 px-4 py-2 text-white transition-colors btn btn-block">
-                Add Review
+                Submit Review
               </button>
             </form>
           </div>
