@@ -23,7 +23,7 @@ const Login = () => {
       navigate('/')
       })
       .catch((error) => {
-        toast.error("Google login failed!")
+        toast.error("Failed to login!")
       });
   };
 

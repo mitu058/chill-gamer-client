@@ -27,7 +27,7 @@ const Trending = () => {
     Explore the most popular game genres and their top-rated titles based on reviews from our community.
   </p>
         </div>
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 w-[80%] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-[80%] mx-auto">
         <div className=" mx-auto hover:scale-105 transition my-6 max-w-[350px] rounded-lg bg-white shadow-lg dark:bg-[#18181B]">
           <div className="flex items-center justify-between gap-10 px-4 py-4">
             {/* Avatar image  */}

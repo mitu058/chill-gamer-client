@@ -38,6 +38,7 @@ const UpdateReview = () => {
                 icon: 'success',
                 confirmButtonText: 'close'
               }) 
+              form.reset()
         }
        })
     }

@@ -40,7 +40,7 @@ const handelAddReview = e =>{
                 icon: 'success',
                 confirmButtonText: 'Close'
               })
-              from.reset()
+              form.reset()
               navigate('/myreview')
         }
   
