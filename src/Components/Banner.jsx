@@ -113,7 +113,6 @@ const Banner = () => {
               className="min-w-full h-60 bg-black/20 sm:h-96 md:h-[540px] object-cover"
               alt={`Slider - ${idx + 1}`}
             />
-            {/* Text Overlay */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center px-4 py-2 ">
               <h2 className="text-5xl font-bold">{slide.title}</h2>
               <p className="mt-2 text-lg font-bold">{slide.description}</p>

@@ -1,8 +1,13 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Project Name : Chill Gamer
 
-Currently, two official plugins are available:
+Create a platform for exploring and sharing game reviews with features like user authentication and review management. Focus on a clean, responsive UI for a simple and enjoyable user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Features 
+- User Authentication & Authorization
+- Game Review Management (Users can add, update, and delete their reviews.)
+- Game Watchlist Feature
+- Dynamic & Responsive UI
+- Advanced Sorting and Filtering
+
+### Live Link : [https://chill-gamer-b68c7.web.app/](https://chill-gamer-b68c7.web.app/)
