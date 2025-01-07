@@ -5,17 +5,41 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const ReviewDetails = () => {
-  const navigate = useNavigate()
-  const {user} = useContext(AuthContext)
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const reviewdetails = useLoaderData();
   const { name, title, genre, email, rating, review, photo } = reviewdetails;
 
-
   const handleAddToWatchlist = (e) => {
     e.preventDefault();
-    const watchlistItem = { title, genre, rating, name, writerEmail:email,  email:user?.email, photo, review };
-    // console.log("Add to watchlist", watchlistItem);
 
+    if (!user) {
+      // Show SweetAlert when the user is not logged in
+      Swal.fire({
+        icon: "warning",
+        title: "Please Login",
+        text: "You need to log in to add items to your watchlist.",
+        confirmButtonText: "Login",
+        confirmButtonColor: "#4f46e5",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login"); // Redirect to login page
+        }
+      });
+      return;
+    }
+
+    const watchlistItem = {
+      title,
+      genre,
+      rating,
+      name,
+      writerEmail: email,
+      email: user?.email,
+      photo,
+      review,
+    };
+    // console.log("Add to watchlist", watchlistItem);
     fetch("https://chill-gamer-server-beta.vercel.app/watchlist", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -26,21 +50,18 @@ const ReviewDetails = () => {
         // console.log("review saved to database", data);
         if (data.insertedId) {
           Swal.fire({
-            text: 'Review add your watchlist',
-            icon: 'success',
-            confirmButtonText: 'Close'
-          })
-          navigate('/myWatchlist')
+            text: "Review add your watchlist",
+            icon: "success",
+            confirmButtonText: "Close",
+          });
+          navigate("/myWatchlist");
         }
       });
   };
 
-
-
-
   return (
-    <div className="flex flex-col items-center  py-10 px-4">
-      <div className="relative w-full max-w-4xl mb-10">
+    <div className="flex gap-8 py-10 px-14">
+      <div className="relative w-full mb-10">
         <img
           src={photo}
           alt={`${name} Banner`}
@@ -48,51 +69,41 @@ const ReviewDetails = () => {
         />
       </div>
 
-      <div className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg px-6 py-8 space-y-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="text-center">
-            <h2 className="text-sm text-gray-500 dark:text-gray-400">Title</h2>
-            <p className="text-lg font-medium text-gray-800 dark:text-white">
-              {title}
-            </p>
-          </div>
-          <div className="text-center">
-            <h2 className="text-sm text-gray-500 dark:text-gray-400">Genre</h2>
-            <p className="text-lg font-medium text-gray-800 dark:text-white">
-              {genre}
-            </p>
-          </div>
-          <div className="text-center">
-            <h2 className="text-sm text-gray-500 dark:text-gray-400">Rating</h2>
-            <p className="text-lg font-medium text-gray-800 dark:text-white">
-              {rating} / 10
-            </p>
-          </div>
-        </div>
-
-        <div className="text-center">
-          <h2 className="text-xl text-gray-500 dark:text-gray-400">{name}</h2>
-          <p className="text-base font-medium text-gray-800 dark:text-white">
-            {email}
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-4">
-            Review
+      <div className="w-full   rounded-lg px-6 py-8 ">
+        <div className="">
+          <div className="space-y-2">
+            <h2 className="text-lg ">Title : {title}</h2>
+         
+        
+        
+            <h2 className="text-lg ">Genre : {genre}</h2>
+         
+         
+          
+            <h2 className="text-lg ">Rating : {rating}</h2>
+           
+            <h2 className="text-xl ">Name : {name}</h2>
+            <h2 className="text-xl ">Email : {email}</h2>
+            <h2 className="text-lg font-semibold  dark:text-white mb-4">
+            Review : {review}
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            {review}
-          </p>
-        </div>
 
-        <div className="flex justify-center">
-          <button onClick={handleAddToWatchlist} className="rounded-full bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700">
+          
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={handleAddToWatchlist}
+            className="rounded-full bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white py-2 px-6 text-sm font-semibold hover:bg-sky-700"
+          >
             Add to Wishlist
           </button>
         </div>
+        
+        </div>
+    
+
       </div>
     </div>
+             </div>
   );
 };
 

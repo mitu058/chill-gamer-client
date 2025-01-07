@@ -7,7 +7,6 @@ import { ThemeContext } from "../Provider/ThemeProvider";
 const Navbar = () => {
   const { user, userLogOut } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  
 
   const links = (
     <>
@@ -21,19 +20,34 @@ const Navbar = () => {
           <span>All Reviews</span>
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/addReview" className="flex items-center">
-          <span>Add Review</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/myreview" className="">
-          <span>My Reviews</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/myWatchlist">Game Watchlist</NavLink>
-      </li>
+      {user && user?.email ? (
+        <li>
+          <NavLink to="/addReview" className="flex items-center">
+            <span>Add Review</span>
+          </NavLink>
+        </li>
+      ) : (
+        ""
+      )}
+      {user && user?.email ? (
+        <li>
+          <NavLink to="/myreview" className="">
+            <span>My Reviews</span>
+          </NavLink>
+        </li>
+      ) : (
+        ""
+      )}
+      {user && user?.email ? (
+        <li>
+          <NavLink to="/myWatchlist">Game Watchlist</NavLink>
+        </li>
+      ) : (
+        ""
+      )}
+       <li>
+          <NavLink to="/aboutUs">About Us</NavLink>
+        </li>
     </>
   );
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import image from '../assets/Forspoken-.jpg'
 import { Typewriter } from 'react-simple-typewriter';
+import { Link } from 'react-router-dom';
 
 const Upcomeing = () => {
     return (
@@ -31,12 +32,14 @@ const Upcomeing = () => {
         and uncover the mysteries of a strange new land.
       </p>
       <div className="flex justify-center lg:justify-start gap-4 mb-6">
-        <button className="px-6 py-2 bg-purple-800 hover:bg-purple-700 text-white font-bold rounded">
+        {/* <button className="px-6 py-2 bg-purple-800 hover:bg-purple-700 text-white font-bold rounded">
           Details
+        </button> */}
+     <Link to='/seeDetails'>
+     <button className="px-6 py-2 bg-[#e91e63] hover:bg-[#d81b60] text-white font-bold rounded">
+         See Details
         </button>
-        <button className="px-6 py-2 bg-[#e91e63] hover:bg-[#d81b60] text-white font-bold rounded">
-          Pre-Order
-        </button>
+     </Link>
       </div>
       <div className="grid grid-cols-4 gap-4 text-center">
         {/* Countdown Timer */}

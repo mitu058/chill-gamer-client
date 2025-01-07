@@ -31,7 +31,7 @@ const AllReview = () => {
   };
 
   return (
-    <div className="my-16 w-[80%] mx-auto">
+    <div className="my-16 container mx-auto">
       <div className="text-center pb-6">
         <h2 className="text-4xl pb-4 font-bold">All Reviews</h2>
         <p>Discover a hub of honest and in-depth reviews for all your favorite games. Explore ratings, insights <br /> and experiences from gamers worldwide to guide your next pick.</p>
@@ -68,7 +68,7 @@ const AllReview = () => {
       </div>
 
       {/* Display reviews */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {sortedReviews.map((review) => (
           <div key={review._id} className="card bg-white shadow-xl">
             <figure>

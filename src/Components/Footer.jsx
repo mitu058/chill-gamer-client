@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
-
+import logo from "../assets/favicon.png"
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-gray-200 py-10">
@@ -8,12 +8,10 @@ const Footer = () => {
         {/* Top Section */}
         <div className="grid justify-center items-center grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Us */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">About Us</h3>
+          <div className="space-y-2 flex flex-col justify-center items-center">
+           <img src={logo} className="w-12 h-12 rounded-full" alt="" />
             <p className="text-sm leading-relaxed">
-              Welcome to our gaming universe! We bring you the latest updates,
-              reviews, and guides for top-rated games across all platforms. Join
-              our community to level up your gaming experience!
+             Join our community to level <br /> up your gaming experience!
             </p>
           </div>
 
