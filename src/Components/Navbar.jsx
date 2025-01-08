@@ -9,46 +9,79 @@ const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   const links = (
-    <>
-      <li>
-        <NavLink to="/" className="flex items-center">
+    <div className="space-x-7">
+      
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `font-bold text-sm ${
+              isActive ? "text-[#e91e63]" : "hover:text-warning"
+            }`
+          }
+        >
           <span>Home</span>
         </NavLink>
-      </li>
-      <li>
-        <NavLink to="/Reviews" className="flex items-center">
+      
+        <NavLink
+          to="/Reviews"
+          className={({ isActive }) =>
+            `font-bold text-sm ${
+              isActive ? "text-[#e91e63]" : "hover:text-warning"
+            }`
+          }
+        >
           <span>All Reviews</span>
         </NavLink>
-      </li>
+      
       {user && user?.email ? (
-        <li>
-          <NavLink to="/addReview" className="flex items-center">
+       
+          <NavLink to="/addReview"    className={({ isActive }) =>
+            `font-bold text-sm ${
+              isActive ? "text-[#e91e63]" : "hover:text-warning"
+            }`
+          }>
             <span>Add Review</span>
           </NavLink>
-        </li>
+       
       ) : (
         ""
       )}
       {user && user?.email ? (
-        <li>
-          <NavLink to="/myreview" className="">
+        
+          <NavLink to="/myreview"    className={({ isActive }) =>
+            `font-bold text-sm ${
+              isActive ? "text-[#e91e63]" : "hover:text-warning"
+            }`
+          }>
             <span>My Reviews</span>
           </NavLink>
-        </li>
+        
       ) : (
         ""
       )}
       {user && user?.email ? (
-        <li>
-          <NavLink to="/myWatchlist">Game Watchlist</NavLink>
-        </li>
+        
+          <NavLink to="/myWatchlist"    className={({ isActive }) =>
+            `font-bold text-sm ${
+              isActive ? "text-[#e91e63]" : "hover:text-warning"
+            }`
+          }>
+            <span>Game Watchlist</span>
+          </NavLink>
+       
       ) : (
         ""
       )}
-       <li>
-          <NavLink to="/aboutUs">About Us</NavLink>
-        </li>
-    </>
+    
+        <NavLink to="/aboutUs" className={({ isActive }) =>
+            `font-bold text-sm ${
+              isActive ? "text-[#e91e63]" : "hover:text-warning"
+            }`
+          }>
+            <span>About Us</span>
+          </NavLink>
+      
+    </div>
   );
 
   return (
