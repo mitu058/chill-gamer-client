@@ -125,7 +125,7 @@ const Navbar = () => {
               className="w-12 h-12 rounded-full object-cover"
             />
             <a className="text-2xl font-bold md:block lg:block hidden">
-              Chill Gamer
+            LevelUp
             </a>
           </div>
         </div>
